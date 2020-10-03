@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>A simple, clean, and responsive HTML invoice template</title>
+    <link rel="stylesheet" href="./css/inostyle.css" />
+  </head>
+
+  <body>
+    <div class="invoice-box"></div>
+
+    <script>
+      window.onload = function() {
+        var today = new Date();
+        var date =
+          today.getFullYear() +
+          "-" +
+          (today.getMonth() + 1) +
+          "-" +
+          today.getDate();
+        var time =
+          today.getHours() +
+          ":" +
+          today.getMinutes() +
+          ":" +
+          today.getSeconds();
+        var dateTime = date + " " + time;
+        // console.log(date;
+
+        details = JSON.parse(sessionStorage.getItem("userInfo"));
+        Bdetails = JSON.parse(sessionStorage.getItem("bill"));
+        document.querySelector(
+          ".invoice-box"
+        ).innerHTML = `<table cellpadding="0" cellspacing="0">
+        <tr class="top">
+          <td colspan="2">
+            <table>
+              <tr>
+                <td class="title">
+                  <img
+                    src="https://www.codingmart.com/assets/codingmart.png"
+                    style="width:100%; max-width:300px;"
+                  />
+                </td>
+
+                <td>
+                  Invoice #: 123<br />
+                  Created: ${dateTime}<br />
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="information">
+          <td colspan="2">
+            <table>
+              <tr>
+                <td>
+                  ${details.address}
+                </td>
+
+                <td>
+                 ${details.name}<br />
+            
+                  ${details.email}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="heading">
+          <td>
+            Payment Method
+          </td>
+
+          <td>
+            Check #
+          </td>
+        </tr>
+
+        <tr class="details">
+          <td>
+            Check
+          </td>
+
+          <td>
+           
+          </td>
+        </tr>
+
+        <tr class="heading">
+          <td>
+            Item
+          </td>
+
+          <td>
+            Price
+          </td>
+        </tr>
+
+        <tr class="item last">
+          <td>
+            ${Bdetails.name}
+          </td>
+          <td>
+            Rs.${Bdetails.cost} x(${Bdetails.quantity})
+          </td>
+        </tr>
+
+        <tr class="total">
+          <td></td>
+
+          <td>
+            Total: Rs.${Bdetails.price}
+          </td>
+        </tr>
+      </table>`;
+      };
+    </script>
+  </body>
+</html>

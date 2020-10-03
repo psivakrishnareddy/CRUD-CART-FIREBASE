@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://bootswatch.com/4/cyborg/bootstrap.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin | Panel</title>
+    <style>
+      .form-control {
+        border-color: greenyellow;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Coding Cart</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarColor02"
+        aria-controls="navbarColor02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Manage</a>
+          </li>
+        </ul>
+        <h4 id="usrname" style="margin-right: 10px;"></h4>
+        <button onclick="redirect()" class="btn btn-danger my-2 my-sm-0">
+          <strong>LOGOUT</strong>
+        </button>
+      </div>
+    </nav>
+    <section>
+      <div class="jumbotron text-center m-3">
+        <hr class="my-4" />
+        <div class="row">
+          <div class="col-md-12">
+            <div
+              class="card border-primary mb-3 text-white"
+              style="width: 100%;"
+            >
+              <div class="card-header">Customer Info</div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label
+                        class="col-form-label"
+                        for="product-name"
+                        style="float: left;"
+                        >Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Name"
+                        id="name"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label
+                        class="col-form-label"
+                        for="product-name"
+                        style="float: left;"
+                        >Email</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        placeholder="Email"
+                        id="email"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="product-description" style="float: left;"
+                        >Address</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="address"
+                        rows="3"
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <button
+                      class="btn btn-secondary"
+                      onclick="storeUserDetails()"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function storeUserDetails() {
+        var name = document.querySelector("#name").value;
+        var email = document.querySelector("#email").value;
+        var address = document.querySelector("#address").value;
+        userdetails = { name: name, email: email, address: address };
+        sessionStorage.setItem("userInfo", JSON.stringify(userdetails));
+        window.location.assign("./invoice.html");
+      }
+      function redirect() {
+        window.location.assign("./index.html");
+        sessionStorage.clear();
+      }
+      window.onload = function() {
+        console.log(JSON.parse(sessionStorage.getItem("bill")));
+        if (sessionStorage.getItem("currentUser") == null) {
+          alert("please Login");
+          window.location.assign("./index.html");
+        }
+        var name = document.querySelector("#usrname");
+        name.textContent = JSON.parse(sessionStorage.getItem("currentUser"));
+      };
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <!-- <script src="./js/capp.js"></script> -->
+  </body>
+</html>

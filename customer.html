@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://bootswatch.com/4/cyborg/bootstrap.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin | Panel</title>
+    <style>
+      .form-control {
+        border-color: greenyellow;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Coding Cart</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarColor02"
+        aria-controls="navbarColor02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Manage</a>
+          </li>
+        </ul>
+        <h4 id="usrname" style="margin-right: 10px;"></h4>
+        <button onclick="redirect()" class="btn btn-danger my-2 my-sm-0">
+          <strong>LOGOUT</strong>
+        </button>
+      </div>
+    </nav>
+    <section>
+      <div class="jumbotron text-center m-3">
+        <h4>Product Information</h4>
+        <hr class="my-4" />
+        <div class="row">
+          <div class="col-md-12">
+            <div
+              class="card border-warning mb-3  text-white"
+              sstyle="width: 100%;"
+            >
+              <div class="card-body">
+                <h5>Products List</h5>
+                <ul class="list-group bg-info">
+                  <!-- <li
+                    class="list-group-item d-flex justify-content-between align-items-center flex-fixed-width-item"
+                  >
+                    <img
+                      style="height: 200px; width: 30%; display: block;"
+                      src="./imgs/test.jpg"
+                      alt="Card image"
+                    />
+
+                    <div class="card-body mt-4" style="width: 100px;">
+                      <h4 class="card-title">Chicken</h4>
+                      <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+                      <p class="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content. jksjadfkhk
+                      </p>
+                    </div>
+                    <div class="card-body mt-3">
+                      <span class="badge badge-pill badge-success">Rs.</span>
+                    </div>
+
+                    <div class="card-body">
+                      <div class="form-group" style="width: 30%;">
+                        <label
+                          class="col-form-label"
+                          for="product-quant-cust"
+                          style="float: left;"
+                          >Item Quant</label
+                        >
+                        <input
+                          type="number"
+                          min="0"
+                          class="form-control"
+                          placeholder="Quantity"
+                          class="product-quant-cust"
+                        
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="card-footer text-muted mt-2">
+                      <button class="btn btn-primary buy-item">BUY</button>
+                    </div>
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+
+    <script>
+      function redirect() {
+        window.location.assign("./index.html");
+        sessionStorage.clear();
+      }
+      window.onload = function() {
+        if (sessionStorage.getItem("currentUser") == null) {
+          alert("please Login");
+          window.location.assign("./index.html");
+        }
+        var name = document.querySelector("#usrname");
+        name.textContent = JSON.parse(sessionStorage.getItem("currentUser"));
+      };
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="./js/capp.js"></script>
+  </body>
+</html>
